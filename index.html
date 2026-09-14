@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Birthday Reminder</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <div class="container">
+
+        <header>
+            <div class="header-content">
+                <div class="header-icon">🎂</div>
+                <h1>Birthday Reminder</h1>
+                <p>Never forget an important birthday!</p>
+            </div>
+            <div class="header-wave">
+                <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+                    <path d="M0,40 C360,100 1080,0 1440,60 L1440,100 L0,100 Z" fill="rgba(255,255,255,0.1)"></path>
+                </svg>
+            </div>
+        </header>
+
+        <!-- Add Birthday Form -->
+        <section class="form-section">
+
+            <div class="form-header">
+                <h2 id="formTitle">Add Birthday</h2>
+                <div class="form-badge" id="formBadge">New</div>
+            </div>
+
+            <form id="birthdayForm">
+
+                <input type="hidden" id="birthdayId">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">
+                            <span class="label-icon">👤</span> Name
+                        </label>
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter person's name"
+                            required
+                        >
+                        <div class="input-highlight"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">
+                            <span class="label-icon">📅</span> Date of Birth
+                        </label>
+                        <input
+                            type="date"
+                            id="date"
+                            required
+                        >
+                        <div class="input-highlight"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="relation">
+                            <span class="label-icon">💫</span> Relation
+                        </label>
+                        <input
+                            type="text"
+                            id="relation"
+                            placeholder="e.g. Friend, Family..."
+                        >
+                        <div class="input-highlight"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">
+                            <span class="label-icon">✉️</span> Email
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter email for reminders"
+                        >
+                        <div class="input-highlight"></div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="saveButton" class="btn btn-primary">
+                        <span class="btn-icon">➕</span> Add Birthday
+                    </button>
+
+                    <button
+                        type="button"
+                        id="cancelButton"
+                        class="btn btn-cancel"
+                    >
+                        <span class="btn-icon">✖</span> Cancel
+                    </button>
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- Birthday List Section -->
+        <section class="birthday-section">
+
+            <div class="section-header">
+                <div class="section-title">
+                    <h2>🎉 Upcoming Birthdays</h2>
+                    <span class="birthday-count" id="birthdayCount">0</span>
+                </div>
+
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input
+                        type="text"
+                        id="search"
+                        placeholder="Search by name..."
+                    >
+                </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">All</button>
+                <button class="filter-tab" data-filter="today">Today</button>
+                <button class="filter-tab" data-filter="week">This Week</button>
+                <button class="filter-tab" data-filter="month">This Month</button>
+            </div>
+
+            <!-- Birthday List -->
+            <div id="birthdayList">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Loading birthdays...</p>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- Firebase -->
+    <script type="module" src="firebase.js"></script>
+
+    <!-- Main JavaScript -->
+    <script type="module" src="script.js"></script>
+
+</body>
+</html>
