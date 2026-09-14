@@ -8,7 +8,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -21,96 +21,123 @@
     <!-- Confetti Canvas -->
     <canvas id="confettiCanvas"></canvas>
 
+    <!-- Top Navigation -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <div class="brand">
+                <span class="brand-icon">🎂</span>
+                <span class="brand-name">Birthday Reminder</span>
+            </div>
+            <button type="button" class="nav-add-btn" id="navAddBtn">
+                <span class="btn-icon">➕</span>
+                Add Birthday
+            </button>
+        </div>
+    </nav>
+
     <div class="container">
 
-        <header>
-            <div class="header-content">
-                <div class="header-icon">🎂</div>
-                <h1>Birthday Reminder</h1>
-                <p>Never forget an important birthday!</p>
+        <!-- Hero -->
+        <header class="hero">
+            <span class="hero-emoji e1">🎈</span>
+            <span class="hero-emoji e2">🎉</span>
+            <span class="hero-emoji e3">🎊</span>
+            <span class="hero-emoji e4">✨</span>
+
+            <div class="hero-content">
+                <h2>Never miss a <span class="gradient-text">special day!</span></h2>
+                <p>Add birthdays, keep relationships close, and celebrate every wonderful person.</p>
             </div>
-            <div class="header-wave">
-                <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-                    <path d="M0,40 C360,100 1080,0 1440,60 L1440,100 L0,100 Z" fill="rgba(255,255,255,0.1)"></path>
-                </svg>
-            </div>
+
+            <div class="hero-cake">🎂</div>
         </header>
 
+        <!-- Stats Dashboard -->
+        <section class="stats-row" id="statsRow">
+
+            <div class="stat-card stat-total" data-filter="all"
+                title="View all birthdays">
+                <div class="stat-icon">🎈</div>
+                <div class="stat-info">
+                    <span class="stat-value" id="statTotal">0</span>
+                    <span class="stat-label">Total</span>
+                </div>
+            </div>
+
+            <div class="stat-card stat-today" data-filter="today"
+                title="View birthdays today">
+                <div class="stat-icon">🎉</div>
+                <div class="stat-info">
+                    <span class="stat-value" id="statToday">0</span>
+                    <span class="stat-label">Today</span>
+                </div>
+            </div>
+
+            <div class="stat-card stat-week" data-filter="week"
+                title="View birthdays this week">
+                <div class="stat-icon">📅</div>
+                <div class="stat-info">
+                    <span class="stat-value" id="statWeek">0</span>
+                    <span class="stat-label">This Week</span>
+                </div>
+            </div>
+
+            <div class="stat-card stat-month" data-filter="month"
+                title="View birthdays this month">
+                <div class="stat-icon">🗓️</div>
+                <div class="stat-info">
+                    <span class="stat-value" id="statMonth">0</span>
+                    <span class="stat-label">This Month</span>
+                </div>
+            </div>
+
+        </section>
+
         <!-- Add Birthday Form -->
-        <section class="form-section">
+        <section class="form-section" id="formSection">
 
             <div class="form-header">
-                <h2 id="formTitle">Add Birthday</h2>
-                <div class="form-badge" id="formBadge">New</div>
+                <div class="form-heading">
+                    <span class="form-heading-icon">➕</span>
+                    <h2 id="formTitle">Add Birthday</h2>
+                </div>
+                <button type="button" class="form-close" id="formCloseBtn"
+                    title="Close">&times;</button>
             </div>
 
             <form id="birthdayForm">
 
                 <input type="hidden" id="birthdayId">
 
-                <div class="form-row">
+                <div class="form-grid">
+
                     <div class="form-group">
-                        <label for="name">
-                            <span class="label-icon">👤</span> Name
-                        </label>
-                        <input
-                            type="text"
-                            id="name"
-                            placeholder="Enter person's name"
-                            required
-                        >
-                        <div class="input-highlight"></div>
+                        <label for="name">👤 Name</label>
+                        <input type="text" id="name" placeholder="Enter person's name" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="date">
-                            <span class="label-icon">📅</span> Date of Birth
-                        </label>
-                        <input
-                            type="date"
-                            id="date"
-                            required
-                        >
-                        <div class="input-highlight"></div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="relation">
-                            <span class="label-icon">💫</span> Relation
-                        </label>
-                        <input
-                            type="text"
-                            id="relation"
-                            placeholder="e.g. Friend, Family..."
-                        >
-                        <div class="input-highlight"></div>
+                        <label for="date">📅 Date of Birth</label>
+                        <input type="date" id="date" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">
-                            <span class="label-icon">✉️</span> Email
-                        </label>
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="Enter email for reminders"
-                        >
-                        <div class="input-highlight"></div>
+                        <label for="relation">💫 Relation</label>
+                        <input type="text" id="relation" placeholder="e.g. Friend, Family...">
                     </div>
+
+                    <div class="form-group">
+                        <label for="email">✉️ Email</label>
+                        <input type="email" id="email" placeholder="For reminders">
+                    </div>
+
                 </div>
 
                 <div class="form-actions">
                     <button type="submit" id="saveButton" class="btn btn-primary">
                         <span class="btn-icon">➕</span> Add Birthday
                     </button>
-
-                    <button
-                        type="button"
-                        id="cancelButton"
-                        class="btn btn-cancel"
-                    >
+                    <button type="button" id="cancelButton" class="btn btn-cancel">
                         <span class="btn-icon">✖</span> Cancel
                     </button>
                 </div>
@@ -119,32 +146,29 @@
 
         </section>
 
-
         <!-- Birthday List Section -->
-        <section class="birthday-section">
+        <section class="birthday-section" id="birthdaySection">
 
             <div class="section-header">
                 <div class="section-title">
-                    <h2>🎉 Upcoming Birthdays</h2>
+                    <span class="section-title-icon">🎉</span>
+                    <h2 id="listTitle">Upcoming Birthdays</h2>
                     <span class="birthday-count" id="birthdayCount">0</span>
                 </div>
 
                 <div class="search-wrapper">
                     <span class="search-icon">🔍</span>
-                    <input
-                        type="text"
-                        id="search"
-                        placeholder="Search by name..."
-                    >
+                    <input type="text" id="search" placeholder="Search by name...">
                 </div>
             </div>
 
             <!-- Filter Tabs -->
-            <div class="filter-tabs">
-                <button class="filter-tab active" data-filter="all">All</button>
-                <button class="filter-tab" data-filter="today">Today</button>
-                <button class="filter-tab" data-filter="week">This Week</button>
-                <button class="filter-tab" data-filter="month">This Month</button>
+            <div class="filter-tabs" id="filterTabs">
+                <div class="tab-indicator" id="tabIndicator"></div>
+                <button type="button" class="filter-tab active" data-filter="all">All</button>
+                <button type="button" class="filter-tab" data-filter="today">Today</button>
+                <button type="button" class="filter-tab" data-filter="week">This Week</button>
+                <button type="button" class="filter-tab" data-filter="month">This Month</button>
             </div>
 
             <!-- Birthday List -->
@@ -158,6 +182,9 @@
         </section>
 
     </div>
+
+    <!-- Floating Action Button -->
+    <button type="button" class="fab" id="fabBtn" title="Add Birthday">＋</button>
 
     <!-- Firebase -->
     <script type="module" src="firebase.js"></script>
